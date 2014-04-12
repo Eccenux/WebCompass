@@ -464,7 +464,7 @@ function CompassHelper(mockingEnabled) {
 	var browserWatches = [];
 // EOC
 	function cordovaHeadingToHeading(cordovaHeading) {
-		return Math.abs(360 - prevDirectionTranslation(cordovaHeading.magneticHeading));
+		return Math.abs(360 - cordovaHeading.magneticHeading);
 	}
 // EOC
 	CompassHelper.prototype.watchHeading = function(onSuccess, onError) {
