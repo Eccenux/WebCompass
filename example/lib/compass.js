@@ -463,6 +463,10 @@ function CompassHelper(mockingEnabled) {
 	var browserWatchesActivityCount = 0;
 	var browserWatches = [];
 // EOC
+	function cordovaHeadingToHeading(cordovaHeading) {
+		return Math.abs(360 - prevDirectionTranslation(cordovaHeading.magneticHeading));
+	}
+// EOC
 	CompassHelper.prototype.watchHeading = function(onSuccess, onError) {
 		var _self = this;
 
@@ -477,7 +481,7 @@ function CompassHelper(mockingEnabled) {
 
 		if (compassType == 'native') {
 			watchID = this.nativeCompass.watchHeading(function(cordovaHeading) {
-				onSuccess(cordovaHeading.magneticHeading);
+				onSuccess(cordovaHeadingToHeading(cordovaHeading));
 			}, function(cordovaError) {
 				onErrorProxy(_self, onError, cordovaError);
 			}, {
@@ -551,7 +555,7 @@ function CompassHelper(mockingEnabled) {
 
 		if (compassType == 'native') {
 			this.nativeCompass.getCurrentHeading(function(cordovaHeading) {
-				onSuccess(cordovaHeading.magneticHeading);
+				onSuccess(cordovaHeadingToHeading(cordovaHeading));
 			}, function(cordovaError) {
 				onErrorProxy(_self, onError, cordovaError);
 			});
