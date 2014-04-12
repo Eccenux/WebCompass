@@ -318,9 +318,9 @@ function CompassMock() {
 function CompassHelper(mockingEnabled) {
 // EOC
 	this.availability = {
-		native : false,
-		browser: false,
-		mock: typeof(mockingEnabled)=='undefined' ? false : mockingEnabled
+		'native' : false,
+		'browser': false,
+		'mock': typeof(mockingEnabled)=='undefined' ? false : mockingEnabled
 	};
 // EOC
 	this.available = false;
@@ -384,7 +384,7 @@ function CompassHelper(mockingEnabled) {
 
 		if ('navigator' in window && 'compass' in window.navigator) {
 			this.nativeCompass = window.navigator.compass;
-			this.availability.native = true;
+			this.availability['native'] = true;
 			this.available = true;
 		}
 		if ('CompassInBrowser' in window) {
@@ -433,7 +433,7 @@ function CompassHelper(mockingEnabled) {
 		}
 
 
-		if (this.availability.native) {
+		if (this.availability['native']) {
 			compassType = 'native';
 		}
 		else if (this.availability.browser) {

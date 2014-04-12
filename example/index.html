@@ -39,7 +39,6 @@
 			 * Start compass (if available)
 			 */
 			this.start = function() {
-				console.log('start');
 				if (this.helper.init().available && compassWatchID == null) {
 					compassWatchID = this.helper.watchHeading(function(angle){
 						//LOG.info('angle: ', angle);
@@ -51,7 +50,6 @@
 			 * Stop compass
 			 */
 			this.stop = function() {
-				console.log('stop');
 				if (compassWatchID != null) {
 					this.helper.clearWatch(compassWatchID);
 					compassWatchID = null;
@@ -62,7 +60,6 @@
 			 */
 			this.init = function() {
 				var _self = this;
-				alert('init');
 
 				$img = $('.compass img');
 				rescaleImage($img);
