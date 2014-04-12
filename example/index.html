@@ -28,7 +28,7 @@
 
 	<script type="text/javascript">
 		// micro class
-		var compass = new function() {
+		window.compassController = new function() {
 			this.helper = new CompassHelper(true);
 			var compassWatchID = null;
 
@@ -101,7 +101,7 @@
 		};
 
 		// start
-		compass.init();
+		compassController.init();
 	</script>
 
 	<!-- SVG fallback -->
