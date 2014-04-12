@@ -32,6 +32,9 @@
 	<!-- Device orientation (includes compass) -->
 	<gap:plugin name="org.apache.cordova.device-orientation" />
 	
+	<!-- Reading device information -->
+	<gap:plugin name="org.apache.cordova.device" />
+	
 	<!-- icons -->
 	<icon src="logo/logo128.png" default="true" />
 	<icon src="logo/logo036.png" width="36"  height="36"/>
