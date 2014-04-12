@@ -1,0 +1,21 @@
+html, body {
+	background-color: black;
+	font: 10pt sans-serif;
+}
+.compass {
+	overflow:hidden;
+}
+.compass img {
+	margin:2em auto;
+	display: block;
+}
+label.checked {
+	background-color: #ffe;
+}
+label {
+	display: block;
+	border: 1px solid grey;
+	background-color: #eee;
+	padding: .8em;
+	border-radius: .5em;
+}

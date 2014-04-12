@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+    <title>Compass</title>
+	<meta name="author" content="Maciej Jaros">
+	
+	<!-- CSS -->
+	<link rel="stylesheet" href="css/main.css">
+
+	<!-- plugin(s) -->
+	<!-- phonegap.js = cordova.js (file is injected automatically) 	-->
+	<script src="phonegap.js"></script>
+
+	<!-- jQuery and other libs -->
+	<script type="text/javascript" src="lib/jquery.js"></script>
+	<script type="text/javascript" src="lib/jQueryRotateCompressed.js"></script>
+	<script type="text/javascript" src="lib/compass.js"></script>
+</head>
+<body lang="en">
+
+	<label><input type="checkbox" name="compass-toggle" value="on" checked="checked"> Enable compass</label>
+	<div class="compass">
+		<img src="css/images/compass.svg" alt="compass">
+	</div>
+
+	<script type="text/javascript">
+		// micro class
+		var compass = new function() {
+			this.helper = new CompassHelper(true);
+			var compassWatchID = null;
+
+			var $img;
+			var LOG = new Logger('compass');
+
+			/**
+			 * Start compass (if available)
+			 */
+			this.start = function() {
+				if (this.helper.init().available && compassWatchID == null) {
+					compassWatchID = this.helper.watchHeading(function(angle){
+						//LOG.info('angle: ', angle);
+						$img.rotate(angle);
+					});
+				}
+			};
+			/**
+			 * Stop compass
+			 */
+			this.stop = function() {
+				if (compassWatchID != null) {
+					this.helper.clearWatch(compassWatchID);
+					compassWatchID = null;
+				}
+			};
+			/**
+			 * Init compass
+			 */
+			this.init = function() {
+				var _self = this;
+
+				$img = $('.compass img');
+				rescaleImage($img);
+
+				// contols
+				var $toggle = $('input[name="compass-toggle"]').change(function(){
+					if (this.checked) {
+						this.parentNode.className = 'checked';
+						_self.start();
+					} else {
+						this.parentNode.className = '';
+						_self.stop();
+					}
+				});
+				// initial state
+				if ($toggle.is(':checked')) {
+					$toggle[0].parentNode.className = 'checked';
+					_self.start();
+				}
+			};
+
+			function rescaleImage($img){
+				var $container = $img.parent();
+				var w = $container.width();
+				var h = $(window).height() - ($container.position()).top;
+				var diagonal = w < h ? w : h;
+				//var size = diagonal / 1.41421357;	// if image does not fit inside a circle consider larger margin
+				var size = diagonal * 0.9;
+				size = Math.floor(size);
+				$img
+					.attr('width', size)
+					.attr('height', size)
+				;
+			}
+			
+			$(window).resize(function(){
+				rescaleImage($img);
+			});
+		};
+
+		// start
+		compass.init();
+	</script>
+</body>
+</html>
