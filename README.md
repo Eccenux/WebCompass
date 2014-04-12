@@ -22,7 +22,9 @@ All files have full docs in the comments but here are some highlights:
 	* Then you start compass with `start` function.
 	* If compass is in calibration (`inCalibration` property) you need to display instructions for user and wait for `onCalibrationFinalization` call.
 	* Then just replace `onAngleChange` function with image rotation or other angle (alpha) visualization function.
- 
+
+There is also a fully working example in example folder of this repository. It works both in supported browsers and in PhoneGap. In fact you can find a working application [here](https://build.phonegap.com/apps/872131/share).
+
 Quick example
 -------------
 
@@ -53,3 +55,27 @@ In this example I use `rotate` function which is available with [jQuery Rotate l
 PhoneGap Build usage
 --------------------
 
+There are two tricky parts in PhoneGap Build:
+
+1. What is call "features" in Cordova documentation is called "plugins" in PhoneGap Build.
+2. Compass is available within "Device orientation" plugin.
+
+Knowing that you are all set. You just need this additional line in `config.xml` to enable compass:
+```xml
+	<gap:plugin name="org.apache.cordova.device-orientation" />
+```
+
+Also don't forget to include `phonegap.js` in your HTML:
+```html    
+    <script src="phonegap.js"></script>
+```
+Remember that you should NOT add `phonegap.js` to your repository. It will be added by PhoneGap Build automatically.
+
+In `example` folder you will find an example application.
+
+Browser support
+---------------
+
+For in-browser compass support see: [Can I use information](http://caniuse.com/#feat=deviceorientation). That's not that good, but with PhoneGap it should work in more devices. 
+
+Note that PhoneGap Build now only support 3 platforms. You can still build for other ones using older version of PhoneGap or just get PhoneGap and build to all platforms.
