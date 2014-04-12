@@ -103,5 +103,16 @@
 		// start
 		compass.init();
 	</script>
+
+	<!-- SVG fallback -->
+	<script type="text/javascript">
+		document.addEventListener("deviceready", function(){
+			if ('device' in window && 'version' in device) {
+				if (device.platform=='Android' && device.version.search(/^[0-2]\./)==0) {
+					$('.compass img').attr('src', 'css/images/compass.png');
+				}
+			}
+		}, false);
+	</script>
 </body>
 </html>
