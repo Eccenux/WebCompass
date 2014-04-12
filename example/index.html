@@ -100,10 +100,16 @@
 			});
 		};
 
-		// start
-		$(function(){
+		// delay for PhoneGap/Cordova
+		if ('cordova' in window) {
+			document.addEventListener("deviceready", function(){
+				compassController.init();
+			}, false);
+		}
+		else
+		{
 			compassController.init();
-		})
+		}
 	</script>
 
 	<!-- SVG fallback -->
