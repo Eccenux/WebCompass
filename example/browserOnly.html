@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+    <title>Compass</title>
+	<meta name="author" content="Maciej Jaros">
+	
+	<!-- CSS -->
+	<link rel="stylesheet" href="css/main.css">
+
+	<!-- jQuery and other libs -->
+	<script type="text/javascript" src="lib/jquery.js"></script>
+	<script type="text/javascript" src="lib/jQueryRotateCompressed.js"></script>
+	<script type="text/javascript" src="../lib/Logger.js"></script>
+	<script type="text/javascript" src="../lib/CompassInBrowser.js"></script>
+</head>
+<body lang="en">
+	<div id="info">
+
+	</div>
+	<div class="compass">
+		<img src="css/images/compass.svg" alt="compass">
+	</div>
+
+	<script type="text/javascript">
+		function runCompass(compassImage, infoElement) {
+			this.compass = new CompassInBrowser();
+			if (!this.compass.available) {
+				infoElement.innerHTML = "Sorry, compass is not available in your browser.";
+				return;
+			}
+
+			this.compass.start();
+			if (this.compass.inCalibration) {
+				infoElement.innerHTML = "Please rotate your device clockwise.";
+			}
+			this.compass.onCalibrationFinalization = function(){
+				infoElement.innerHTML = "Now we're cookin'";
+			};
+			this.compass.onAngleChange = function(alpha){
+				// This works for any image when using: http://code.google.com/p/jqueryrotate/
+				$(compassImage).rotate(-alpha);
+				infoElement.innerHTML = alpha.toLocaleString();
+			};
+		}
+
+		$img = $('.compass img');
+		info = document.getElementById('info');
+		controller = new runCompass($img[0], info);
+				
+		rescaleImage($img);
+		function rescaleImage($img){
+			var $container = $img.parent();
+			var w = $container.width();
+			var h = $(window).height() - ($container.position()).top;
+			var diagonal = w < h ? w : h;
+			//var size = diagonal / 1.41421357;	// if image does not fit inside a circle consider larger margin
+			var size = diagonal * 0.9;
+			size = Math.floor(size);
+			$img
+				.attr('width', size)
+				.attr('height', size)
+			;
+		}
+		$(window).resize(function(){
+			rescaleImage($img);
+		});
+	</script>
+</body>
+</html>

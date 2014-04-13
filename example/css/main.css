@@ -1,6 +1,7 @@
 html, body {
 	background-color: black;
 	font: 10pt sans-serif;
+	color: whitesmoke;
 }
 .compass {
 	overflow:hidden;
@@ -18,4 +19,7 @@ label {
 	background-color: #eee;
 	padding: .8em;
 	border-radius: .5em;
+}
+.info {
+	padding: .8em;
 }
