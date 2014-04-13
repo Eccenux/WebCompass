@@ -10,14 +10,14 @@
 	<!-- CSS -->
 	<link rel="stylesheet" href="css/main.css">
 
-	<!-- plugin(s) -->
-	<!-- phonegap.js = cordova.js (file is injected automatically) 	-->
-	<script src="phonegap.js"></script>
-
 	<!-- jQuery and other libs -->
 	<script type="text/javascript" src="lib/jquery.js"></script>
 	<script type="text/javascript" src="lib/jQueryRotateCompressed.js"></script>
 	<script type="text/javascript" src="lib/compass.js"></script>
+
+	<!-- plugin(s) -->
+	<!-- phonegap.js = cordova.js (file is injected automatically) 	-->
+	<script src="phonegap.js"></script>
 </head>
 <body lang="en">
 
@@ -42,7 +42,7 @@
 				if (this.helper.init().available && compassWatchID == null) {
 					compassWatchID = this.helper.watchHeading(function(angle){
 						//LOG.info('angle: ', angle);
-						$img.rotate(angle);
+						$img.rotate(-angle);
 					});
 				}
 			};
