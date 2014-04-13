@@ -111,9 +111,9 @@ function CompassInBrowser() {
 // EOC
 	this.available = true == ('addEventListener' in window && 'ondeviceorientation' in window);
 // EOC
-	this.falsePostivieDetected = false;
+	this.falsePositiveDetected = false;
 // EOC
-	this.onFalsePostivieDetected = function(){};
+	this.onFalsePositiveDetected = function(){};
 // EOC
 	this.inCalibration = true;
 // EOC
@@ -129,11 +129,16 @@ function CompassInBrowser() {
 }
 (function(){
 
-	var directionTranslation = function(){};
+	var directionTranslation = function(browserDirection)
+	{
+		return browserDirection;
+	};
 
 	var inBasicCalibration = true;
 
 	var initCalibrationAngle = 0;
+
+	var LOG = new Logger('CompassInBrowser');
 // EOC
 	CompassInBrowser.prototype.resetCalibration = function() {
 		directionTranslation = function(browserDirection)
@@ -148,23 +153,24 @@ function CompassInBrowser() {
 	CompassInBrowser.prototype.start = function(){
 		if (!this.started) {
 			this.started = true;
-			window.addEventListener('ondeviceorientation', this, false);
+			window.addEventListener('deviceorientation', this, false);
 
 
 			var _self = this;
 			setTimeout(function(){
 				if (_self.started && _self.lastAlpha == 0) {
-					_self.falsePostivieDetected = true;
+					LOG.info('still on 0 - assuming false positive ', _self);
+					_self.falsePositiveDetected = true;
 					_self.available = false;
-					_self.onFalsePostivieDetected();
+					_self.onFalsePositiveDetected();
 				}
-			}, 500);
+			}, 1000);
 		}
 		return this;
 	};
 // EOC
 	CompassInBrowser.prototype.stop = function(){
-		window.removeEventListener('ondeviceorientation', this, false);
+		window.removeEventListener('deviceorientation', this, false);
 		this.started = false;
 
 		if (this.inCalibration) {
@@ -232,7 +238,7 @@ function CompassInBrowser() {
 			else
 			{
 				this.inCalibration = sidesCalibration(event.alpha);
-				if (this.inCalibration) {
+				if (!this.inCalibration) {
 					this.onCalibrationFinalization();
 				}
 			}
@@ -395,7 +401,7 @@ function CompassHelper(mockingEnabled) {
 				this.availability.browser = true;
 				this.available = true;
 
-				this.browserCompass.onFalsePostivieDetected = function(){
+				this.browserCompass.onFalsePositiveDetected = function(){
 					LOG.warn("browserCompass not available!");
 					// make sure it's off and re-init
 					_self.browserCompass.stop();
@@ -464,7 +470,7 @@ function CompassHelper(mockingEnabled) {
 	var browserWatches = [];
 // EOC
 	function cordovaHeadingToHeading(cordovaHeading) {
-		return Math.abs(360 - cordovaHeading.magneticHeading);
+		return cordovaHeading.magneticHeading;
 	}
 // EOC
 	CompassHelper.prototype.watchHeading = function(onSuccess, onError) {

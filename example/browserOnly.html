@@ -39,10 +39,13 @@
 			this.compass.onCalibrationFinalization = function(){
 				infoElement.innerHTML = "Now we're cookin'";
 			};
+			this.compass.onFalsePositiveDetected = function(){
+				infoElement.innerHTML = "Sorry, compass seem not to be available in your browser.";
+			};
 			this.compass.onAngleChange = function(alpha){
 				// This works for any image when using: http://code.google.com/p/jqueryrotate/
 				$(compassImage).rotate(-alpha);
-				infoElement.innerHTML = alpha.toLocaleString();
+				infoElement.innerHTML = Math.round(alpha).toString();
 			};
 		}
 
