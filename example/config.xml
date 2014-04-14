@@ -2,8 +2,8 @@
 <widget xmlns = "http://www.w3.org/ns/widgets"
 	xmlns:gap = "http://phonegap.com/ns/1.0"
 	id        = "webcompass.example"
-	versionCode="00101"
-	version   = "0.1.1">
+	versionCode="00102"
+	version   = "0.1.2">
 	<!--
 		versionCode = Mmmbb : Major.minor.build
 	-->
