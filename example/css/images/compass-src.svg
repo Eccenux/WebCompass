@@ -15,10 +15,10 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="compass.svg"
-   inkscape:export-filename="compass-400.png"
-   inkscape:export-xdpi="144"
-   inkscape:export-ydpi="144">
+   sodipodi:docname="compass-src.svg"
+   inkscape:export-filename="compass.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
   <defs
      id="defs4">
     <linearGradient
@@ -211,15 +211,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.8"
-     inkscape:cx="108.28073"
+     inkscape:cx="65.78073"
      inkscape:cy="119.28147"
      inkscape:document-units="px"
-     inkscape:current-layer="layer2"
+     inkscape:current-layer="layer1"
      showgrid="false"
      width="220px"
-     inkscape:window-width="1920"
+     inkscape:window-width="1858"
      inkscape:window-height="1058"
-     inkscape:window-x="1912"
+     inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1" />
   <metadata
@@ -439,8 +439,7 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,-802.3622)"
-     style="display:inline"
-     sodipodi:insensitive="true">
+     style="display:inline">
     <text
        xml:space="preserve"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:1.67999995px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Monospace;-inkscape-font-specification:Monospace"
@@ -448,7 +447,7 @@
        sodipodi:linespacing="125%"><textPath
          xlink:href="#path4213"
          id="textPath4244"
-         style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:1.67999995px;writing-mode:lr-tb;text-anchor:start;font-family:Monospace;-inkscape-font-specification:Monospace">15 30 45 60 70</textPath></text>
+         style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:1.67999995px;writing-mode:lr-tb;text-anchor:start;font-family:Monospace;-inkscape-font-specification:Monospace">15 30 45 60 75</textPath></text>
     <text
        sodipodi:linespacing="125%"
        id="text4232"
@@ -477,7 +476,7 @@
        sodipodi:end="4.6491758"
        sodipodi:start="3.2911048"
        transform="matrix(1.0414508,0,0,1.0414508,-20.705349,783.24817)"
-       d="M 43.513904,123.85798 A 97.479721,97.479721 0 0 1 133.74823,41.093117"
+       d="M 43.513904,123.85798 C 50.351824,78.464391 87.934196,43.993032 133.74823,41.093117"
        sodipodi:ry="97.479721"
        sodipodi:rx="97.479721"
        sodipodi:cy="138.37814"
@@ -494,7 +493,7 @@
        sodipodi:cy="138.37814"
        sodipodi:rx="97.479721"
        sodipodi:ry="97.479721"
-       d="M 124.18812,234.5823 A 97.479721,97.479721 0 0 1 43.725748,122.51527"
+       d="M 124.18812,234.5823 C 71.056032,225.90149 35.021153,175.79223 43.701968,122.66014 c 0.0079,-0.0483 0.01582,-0.0966 0.02378,-0.14487"
        transform="matrix(1.0414508,0,0,1.0414508,-20.705349,783.24817)"
        sodipodi:start="1.7327472"
        sodipodi:end="3.3050495"
@@ -503,7 +502,7 @@
        sodipodi:end="1.8373871"
        sodipodi:start="0.15088928"
        transform="matrix(1.0414508,0,0,1.0414508,-20.705349,783.24817)"
-       d="m 236.27826,153.03104 a 97.479721,97.479721 0 0 1 -122.0526,79.38332 l 25.68047,-94.03622 z"
+       d="m 236.27826,153.03104 c -8.09257,53.22486 -57.80017,89.81181 -111.02503,81.71924 -3.71783,-0.56528 -7.39985,-1.34522 -11.02757,-2.33592 l 25.68047,-94.03622 z"
        sodipodi:ry="97.479721"
        sodipodi:rx="97.479721"
        sodipodi:cy="138.37814"
@@ -519,7 +518,7 @@
        sodipodi:cy="138.37814"
        sodipodi:rx="97.479721"
        sodipodi:ry="97.479721"
-       d="m 158.44837,42.678188 a 97.479721,97.479721 0 0 1 78.56714,104.188992 l -97.10938,-8.48904 z"
+       d="m 158.44837,42.678188 c 49.00053,9.494043 82.91372,54.466801 78.56714,104.188992 l -97.10938,-8.48904 z"
        transform="matrix(1.0414508,0,0,1.0414508,-20.705349,783.24817)"
        sodipodi:start="4.9037715"
        sodipodi:end="6.3703809" />
