@@ -383,6 +383,35 @@ function CompassHelper(mockingEnabled) {
 		return watchID;
 	}
 // EOC
+	CompassHelper.prototype.disableBrowserCompass = function(){
+		var _self = this;
+		// make sure it's off and re-init
+		_self.browserCompass.stop();
+		_self.browserCompass.onAngleChange = function(){};
+		_self.availability.browser = false;
+		_self.available = false;
+		_self.init();
+
+		if (_self.available) {
+			var watchIDMap = [];
+			for (var i=0; i<browserWatches.length; i++) {
+				if (browserWatches[i].enabled) {
+					var newID = _self.watchHeading(browserWatches[i].onSuccess, browserWatches[i].onError);
+					watchIDMap[i] = newID;
+				}
+			}
+
+			watchIdMapping = function (watchID) {
+				if (watchID in watchIDMap) {
+					return watchIDMap[watchID];
+				};
+				return watchID;
+			};
+			browserWatches = [];
+			browserWatchesActivityCount = 0;
+		}
+	};
+// EOC
 	CompassHelper.prototype.init = function()
 	{
 		var _self = this;
@@ -403,31 +432,7 @@ function CompassHelper(mockingEnabled) {
 
 				this.browserCompass.onFalsePositiveDetected = function(){
 					LOG.warn("browserCompass not available!");
-					// make sure it's off and re-init
-					_self.browserCompass.stop();
-					_self.browserCompass.onAngleChange = function(){};
-					_self.availability.browser = false;
-					_self.available = false;
-					_self.init();
-
-					if (_self.available) {
-						var watchIDMap = [];
-						for (var i=0; i<browserWatches.length; i++) {
-							if (browserWatches[i].enabled) {
-								var newID = _self.watchHeading(browserWatches[i].onSuccess, browserWatches[i].onError);
-								watchIDMap[i] = newID;
-							}
-						}
-
-						watchIdMapping = function (watchID) {
-							if (watchID in watchIDMap) {
-								return watchIDMap[watchID];
-							};
-							return watchID;
-						}
-						browserWatches = [];
-						browserWatchesActivityCount = 0;
-					}
+					_self.disableBrowserCompass();
 				};
 			}
 		}
@@ -483,9 +488,11 @@ function CompassHelper(mockingEnabled) {
 		}
 
 		var watchID;
+		LOG.info('watchHeading, ', watchID);
 
 
 		if (compassType == 'native') {
+			_self.onCalibrationFinalization();
 			watchID = this.nativeCompass.watchHeading(function(cordovaHeading) {
 				onSuccess(cordovaHeadingToHeading(cordovaHeading));
 			}, function(cordovaError) {
@@ -499,12 +506,16 @@ function CompassHelper(mockingEnabled) {
 // EOC
 			var compass = this.browserCompass;
 			if (!compass.started) {
+				LOG.info('starting');
 				compass.start();
 			}
 			if (!compass.inCalibration) {
+				LOG.info('calibration already done');
 				_self.onCalibrationFinalization();
 			} else {
+				LOG.info('calibration');
 				compass.onCalibrationFinalization = function(){
+					LOG.info('calibration done');
 					_self.onCalibrationFinalization();
 				};
 			}
@@ -515,7 +526,7 @@ function CompassHelper(mockingEnabled) {
 				onError : onError
 			};
 			compass.onAngleChange = function(alpha){
-				for (var i=0; i<browserWatches; i++) {
+				for (var i=0; i<browserWatches.length; i++) {
 					if (browserWatches[i].enabled) {
 						browserWatches[i].onSuccess(alpha);
 					}

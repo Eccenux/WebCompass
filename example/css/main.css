@@ -4,10 +4,11 @@ html, body {
 	color: whitesmoke;
 }
 .compass {
-	overflow:hidden;
+	overflow:hidden;	/* avoid reflows when rotating */
+	margin:1em 0;
 }
 .compass img {
-	margin:2em auto;
+	margin:0 auto;
 	display: block;
 }
 label.checked {
@@ -17,9 +18,7 @@ label {
 	display: block;
 	border: 1px solid grey;
 	background-color: #eee;
+	color: black;
 	padding: .8em;
 	border-radius: .5em;
-}
-.info {
-	padding: .8em;
 }

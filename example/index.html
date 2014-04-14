@@ -16,33 +16,50 @@
 	<script type="text/javascript" src="lib/compass.js"></script>
 
 	<!-- plugin(s) -->
-	<!-- phonegap.js = cordova.js (file is injected automatically) 	-->
+	<!-- phonegap.js = cordova.js (file is injected automatically) -->
 	<script src="phonegap.js"></script>
+
+	<!--
+		<script src="http://192.168.1.106:8085/target/target-script-min.js#anonymous"></script>
+	-->
 </head>
 <body lang="en">
 
 	<label><input type="checkbox" name="compass-toggle" value="on" checked="checked"> Enable compass</label>
 	<div class="compass">
+		<div id="info" style="text-align: center"></div>
+		<div style="text-align: center">ᐁ</div>
 		<img src="css/images/compass.svg" alt="compass">
 	</div>
 
 	<script type="text/javascript">
 		// micro class
 		compassController = new function() {
-			this.helper = new CompassHelper(true);
+			this.helper = new CompassHelper();	// new CompassHelper(true) to use mock
 			var compassWatchID = null;
 
-			var $img;
+			var $img, $info;
 			var LOG = new Logger('compass');
 
 			/**
 			 * Start compass (if available)
 			 */
 			this.start = function() {
+				if (!this.helper.init().available) {
+					if ('cordova' in window) {
+						$info.text("Sorry, compass seem not to be available on this device.");
+					} else {
+						$info.text("Sorry, compass seem not to be available in this browser.");
+					}
+				}
 				if (this.helper.init().available && compassWatchID == null) {
+					$info.text("Please rotate your device clockwise.");
+					this.helper.onCalibrationFinalization = function() {
+						$info.text("Calibration finished.");
+					};
 					compassWatchID = this.helper.watchHeading(function(angle){
-						//LOG.info('angle: ', angle);
 						$img.rotate(-angle);
+						$info.text(Math.round(angle));
 					});
 				}
 			};
@@ -61,10 +78,11 @@
 			this.init = function() {
 				var _self = this;
 
+				$info = $('#info');
 				$img = $('.compass img');
 				rescaleImage($img);
 
-				// contols
+				// controls
 				var $toggle = $('input[name="compass-toggle"]').change(function(){
 					if (this.checked) {
 						this.parentNode.className = 'checked';
