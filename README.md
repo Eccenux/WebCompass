@@ -1,15 +1,27 @@
 WebCompass
 ==========
 
-*WebCompass* is a collection of helper functions/classes to make a HTML5 Compass with support for Apache Crodova (also known as [PhoneGap](http://docs.phonegap.com/)). There is also an example application that works both in mobile internet browsers and in [PhoneGap Build](https://build.phonegap.com/).
+*WebCompass* is a collection of helper functions/classes that ease creating web based compass. There is support for both HTML5 (in-browser) compass and Apache Crodova (also known as [PhoneGap](http://docs.phonegap.com/)). I've also provided a working example application that works both in mobile internet browsers and in [PhoneGap Build](https://build.phonegap.com/).
+
+Working examples
+----------------
+* [Full version](http://m.enux.pl/compass/).
+* [Using only browser compass](http://m.enux.pl/compass/browserOnly.html).
+* [Mobile app](https://build.phonegap.com/apps/872131/share) (note that iPhone build is made with developer certificate and so will probably not work for you).
+
+Source for examples is in the `example` folder of this repository. Note that this repository can also be used as a source for PhoneGap Build (PGB searches for a folder with `index.html`).
+
+How to use libraries
+--------------------
+
+### Overview ###
 
 You can use any of the types of compass separately or use all of them (with fallback). By default order of fallback is following:
 1. PhoneGap (native) compass - should be most accurate.
 2. Browser compass - needs calibration, but should acurate after that.
 3. Mocked compass - this is mainly for testing and so not advised in production code.
 
-How to use libraries
---------------------
+### Basic API information ###
 
 All files have full docs in the comments but here are some highlights:
 * `CompassHelper` is a central class which uses `CompassInBrowser` and `CompassMock` to support different types of compass. Additionally `Logger` is required for logging to console.
@@ -22,8 +34,6 @@ All files have full docs in the comments but here are some highlights:
 	* Then you start compass with `start` function.
 	* If compass is in calibration (`inCalibration` property) you need to display instructions for user and wait for `onCalibrationFinalization` call.
 	* Then just replace `onAngleChange` function with image rotation or other angle (alpha) visualization function.
-
-There is also a fully working example in example folder of this repository. It works both in supported browsers and in PhoneGap. In fact you can find a working application [here](https://build.phonegap.com/apps/872131/share).
 
 Quick example
 -------------
@@ -78,4 +88,4 @@ Browser support
 
 For in-browser compass support see: [Can I use information](http://caniuse.com/#feat=deviceorientation). That's not that good, but with PhoneGap it should work in more devices. 
 
-Note that PhoneGap Build now only support 3 platforms. You can still build for other ones using older version of PhoneGap or just get PhoneGap and build to all platforms.
+Note that PhoneGap Build now only support 3 platforms. You can still build for other ones using older version of PhoneGap on Phonegap Build (pre 3.0) or just install PhoneGap on your computer and build to all platforms.
