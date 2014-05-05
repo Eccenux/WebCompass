@@ -2,8 +2,8 @@
 <widget xmlns = "http://www.w3.org/ns/widgets"
 	xmlns:gap = "http://phonegap.com/ns/1.0"
 	id        = "webcompass.example"
-	versionCode="00102"
-	version   = "0.1.2">
+	versionCode="00103"
+	version   = "0.1.3">
 	<!--
 		versionCode = Mmmbb : Major.minor.build
 	-->
@@ -11,7 +11,7 @@
 	<name>WebCompass</name>
 
 	<description>
-		This is just an example.
+		Example WebCompass library application.
 	</description>
 
 	<author href="http://enux.eu" email="eccenux+mjex@gmail.com">
@@ -25,9 +25,7 @@
 	-->
 
 	<!-- PG version -->
-	<!--
-	<preference name="phonegap-version" value="3.1.0" />
-	-->
+	<preference name="phonegap-version" value="3.4.0" />
 
 	<!-- Device orientation (includes compass) -->
 	<gap:plugin name="org.apache.cordova.device-orientation" />
