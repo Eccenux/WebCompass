@@ -2,8 +2,8 @@
 <widget xmlns = "http://www.w3.org/ns/widgets"
 	xmlns:gap = "http://phonegap.com/ns/1.0"
 	id        = "webcompass.example"
-	versionCode="00103"
-	version   = "0.1.3">
+	versionCode="00104"
+	version   = "0.1.4">
 	<!--
 		versionCode = Mmmbb : Major.minor.build
 	-->
@@ -19,10 +19,10 @@
 	</author>
 
 	<!-- Mobile OS to be build -->
-	<!--
 	<gap:platform name="ios" />
 	<gap:platform name="android" />
-	-->
+	<gap:platform name="winphone" />
+	<gap:platform name="firefoxos" />
 
 	<!-- PG version -->
 	<preference name="phonegap-version" value="3.4.0" />
