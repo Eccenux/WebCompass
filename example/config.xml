@@ -2,8 +2,8 @@
 <widget xmlns = "http://www.w3.org/ns/widgets"
 	xmlns:gap = "http://phonegap.com/ns/1.0"
 	id        = "webcompass.example"
-	versionCode="00104"
-	version   = "0.1.4">
+	versionCode="00105"
+	version   = "0.1.5">
 	<!--
 		versionCode = Mmmbb : Major.minor.build
 	-->
@@ -32,6 +32,9 @@
 	
 	<!-- Reading device information -->
 	<gap:plugin name="org.apache.cordova.device" />
+	
+	<!-- Orientatio lock -->
+	<preference name="orientation" value="portrait" />
 	
 	<!-- icons -->
 	<icon src="logo/logo128.png" default="true" />
