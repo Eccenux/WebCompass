@@ -65,6 +65,10 @@ In this example I use `rotate` function which is available with [jQuery Rotate l
 PhoneGap Build usage
 --------------------
 
+In `example` folder you will find an example application with basic stuff already setup.
+
+###Compass plugin###
+
 There are two tricky parts in PhoneGap Build:
 
 1. What is call "features" in Cordova documentation is called "plugins" in PhoneGap Build.
@@ -74,6 +78,12 @@ Knowing that you are all set. You just need this additional line in `config.xml`
 ```xml
 	<gap:plugin name="org.apache.cordova.device-orientation" />
 ```
+In later versions of Cordova/PhoneGap (at least 5.0+) the syntax is a bit different:
+```xml
+	<gap:plugin name="cordova-plugin-device-orientation" source="npm" />
+```
+
+###PhoneGap script###
 
 Also don't forget to include `phonegap.js` in your HTML:
 ```html    
@@ -81,7 +91,31 @@ Also don't forget to include `phonegap.js` in your HTML:
 ```
 Remember that you should NOT add `phonegap.js` to your repository. It will be added by PhoneGap Build automatically.
 
-In `example` folder you will find an example application.
+###Orientation lock###
+
+The compass behaviour might be weird if you will not lock orientation of the device. Thankfully it's possible to lock orientation in PhoneGap. What you need is a [Screen orientation lock plugin](https://github.com/apache/cordova-plugin-screen-orientation).
+
+You add the plugin by adding this to your `config.xml` (5.0+ syntax):
+```xml
+	<gap:plugin name="cordova-plugin-device-orientation" source="npm" />
+```
+Then you can lock orientation with something like:
+```javascript
+	document.addEventListener("deviceready", function(){
+		screen.lockOrientation('portrait-primary');
+	});
+```
+That would lock the whole app in portrait mode though.
+
+If you are using *jQuery Mobile* you might want to lock only when navigating to the compass page and unlock when navigating away:
+```javascript
+	$(document).on("pageshow", "#page-compass", function() {
+		screen.lockOrientation('portrait-primary');
+	});
+	$(document).on("pagehide", "#page-compass", function() {
+		screen.unlockOrientation();
+	});
+```
 
 Browser support
 ---------------
