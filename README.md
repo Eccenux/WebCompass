@@ -93,7 +93,7 @@ Also don't forget to include `phonegap.js` in your HTML:
 ```
 Remember that you should NOT add `phonegap.js` to your repository. It will be added by PhoneGap Build automatically.
 
-###Orientation lock###
+### Orientation lock ###
 
 The compass behaviour might be weird if you will not lock orientation of the device. Thankfully it's possible to lock orientation in PhoneGap. What you need is a [Screen orientation lock plugin](https://github.com/apache/cordova-plugin-screen-orientation).
 
