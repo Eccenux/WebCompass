@@ -1,7 +1,9 @@
 WebCompass
 ==========
 
-*WebCompass* is a collection of helper functions/classes that ease creating web based compass. There is support for both HTML5 (in-browser) compass and Apache Crodova (also known as [PhoneGap](http://docs.phonegap.com/)). I've also provided a working example application that works both in mobile internet browsers and in [PhoneGap Build](https://build.phonegap.com/).
+**WebCompass** is a collection of helper functions/classes that ease creating web based compass. There is support for both HTML5 (in-browser) compass and Apache Crodova (also known as [PhoneGap](http://docs.phonegap.com/)). I've also provided a working example application that works both in mobile internet browsers and in [PhoneGap Build](https://build.phonegap.com/).
+
+**2024 update**: PhoneGap is long gone, and even though [Cordova is still used](https://cordova.apache.org/announcements/2024/01/12/survey-results.html), I've mostly [moved on to PWA](https://enux.pl/article/en/2018-04-02/responsive-website-pwa-one-day?language=en). Not that I think Cordova is not useful anymore; it is. It just costs more to produce than PWA. I'm closing down this repo for more reasons... With years of playing GPS-based games, I'd say that compasses in phones are not that useful in practice. I think they might not be feasible in a city environment (too many distortions, too much noise). So in practice navigation is more based on postion changes then actual compass. I still think manufactures could do more to make this more stable, but I won't hold my breath 😉
 
 Working examples
 ----------------
@@ -67,7 +69,7 @@ PhoneGap Build usage
 
 In `example` folder you will find an example application with basic stuff already setup.
 
-###Compass plugin###
+### Compass plugin ###
 
 There are two tricky parts in PhoneGap Build:
 
@@ -83,7 +85,7 @@ In later versions of Cordova/PhoneGap (at least 5.0+) the syntax is a bit differ
 	<gap:plugin name="cordova-plugin-device-orientation" source="npm" />
 ```
 
-###PhoneGap script###
+### PhoneGap script ###
 
 Also don't forget to include `phonegap.js` in your HTML:
 ```html    
